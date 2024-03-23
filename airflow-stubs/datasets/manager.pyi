@@ -1,0 +1,19 @@
+import airflow.utils.log.logging_mixin
+from airflow.configuration import conf as conf
+from airflow.datasets import Dataset as Dataset
+from airflow.listeners.listener import get_listener_manager as get_listener_manager
+from airflow.models.dataset import DatasetDagRunQueue as DatasetDagRunQueue, DatasetEvent as DatasetEvent, DatasetModel as DatasetModel
+from airflow.stats import Stats as Stats
+from airflow.utils.log.logging_mixin import LoggingMixin as LoggingMixin
+
+TYPE_CHECKING: bool
+
+class DatasetManager(airflow.utils.log.logging_mixin.LoggingMixin):
+    def __init__(self, **kwargs) -> None: ...
+    def create_datasets(self, dataset_models: list[DatasetModel], session: Session) -> None: ...
+    def register_dataset_change(self, **kwargs) -> None: ...
+    def notify_dataset_created(self, dataset: Dataset): ...
+    def notify_dataset_changed(self, dataset: Dataset): ...
+def resolve_dataset_manager() -> DatasetManager: ...
+
+dataset_manager: DatasetManager

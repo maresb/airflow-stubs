@@ -1,0 +1,6 @@
+import flask.app
+
+TYPE_CHECKING: bool
+
+class AirflowApp(flask.app.Flask): ...
+def get_airflow_app() -> AirflowApp: ...

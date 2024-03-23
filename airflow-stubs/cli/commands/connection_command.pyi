@@ -1,0 +1,26 @@
+import airflow.utils.cli as cli_utils
+import airflow.utils.helpers as helpers
+import airflow.utils.yaml as yaml
+from airflow.cli.simple_table import AirflowConsole as AirflowConsole
+from airflow.cli.utils import is_stdout as is_stdout, print_export_output as print_export_output
+from airflow.configuration import conf as conf
+from airflow.exceptions import AirflowNotFoundException as AirflowNotFoundException
+from airflow.hooks.base import BaseHook as BaseHook
+from airflow.models.connection import Connection as Connection
+from airflow.providers_manager import ProvidersManager as ProvidersManager
+from airflow.secrets.local_filesystem import load_connections_dict as load_connections_dict
+from airflow.utils.cli import suppress_logs_and_warning as suppress_logs_and_warning
+from airflow.utils.db import db_create_default_connections as db_create_default_connections
+from airflow.utils.providers_configuration_loader import providers_configuration_loaded as providers_configuration_loaded
+from airflow.utils.session import create_session as create_session
+
+def connections_get(*args, **kwargs): ...
+def connections_list(*args, **kwargs): ...
+def create_default_connections(args): ...
+def connections_export(*args, **kwargs): ...
+
+alternative_conn_specs: list
+def connections_add(*args, **kwargs): ...
+def connections_delete(*args, **kwargs): ...
+def connections_import(*args, **kwargs): ...
+def connections_test(*args, **kwargs) -> None: ...

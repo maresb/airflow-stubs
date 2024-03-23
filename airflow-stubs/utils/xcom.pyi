@@ -1,0 +1,2 @@
+MAX_XCOM_SIZE: int
+XCOM_RETURN_KEY: str

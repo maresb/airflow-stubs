@@ -1,0 +1,13 @@
+from airflow.models.dag import DAG as DAG, dag as dag
+from airflow.operators.empty import EmptyOperator as EmptyOperator, empty_follow as empty_follow, join as join, join_ext_py as join_ext_py, join_venv as join_venv, run_this_first as run_this_first
+from airflow.operators.python import BranchExternalPythonOperator as BranchExternalPythonOperator, BranchPythonOperator as BranchPythonOperator, BranchPythonVirtualenvOperator as BranchPythonVirtualenvOperator, ExternalPythonOperator as ExternalPythonOperator, PythonOperator as PythonOperator, PythonVirtualenvOperator as PythonVirtualenvOperator, branching as branching, branching_ext_py as branching_ext_py, branching_venv as branching_venv, is_venv_installed as is_venv_installed, t as t
+from airflow.utils.edgemodifier import Label as Label
+from airflow.utils.trigger_rule import TriggerRule as TriggerRule
+
+PATH_TO_PYTHON_BINARY: str
+options: list
+option: str
+def branch_with_external_python(choices): ...
+def hello_world_with_external_python(): ...
+def branch_with_venv(choices): ...
+def hello_world_with_venv(): ...

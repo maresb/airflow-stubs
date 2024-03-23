@@ -1,0 +1,3 @@
+from typing import EPnD, Iterator
+
+def entry_points_with_dist(group: str) -> Iterator[EPnD]: ...

@@ -1,0 +1,3 @@
+from typing import Any, Mapping
+
+def get_json_request_dict() -> Mapping[str, Any]: ...

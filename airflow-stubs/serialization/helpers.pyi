@@ -1,0 +1,3 @@
+from typing import Any
+
+def serialize_template_field(template_field: Any) -> str | dict | list | int | float: ...

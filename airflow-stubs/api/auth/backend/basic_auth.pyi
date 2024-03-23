@@ -1,0 +1,9 @@
+import airflow.auth.managers.fab.api.auth.backend.basic_auth as fab_basic_auth
+from airflow.exceptions import RemovedInAirflow3Warning as RemovedInAirflow3Warning
+from typing import Callable
+
+TYPE_CHECKING: bool
+CLIENT_AUTH: None
+def init_app(_): ...
+def auth_current_user() -> User | None: ...
+def requires_authentication(function: Callable): ...

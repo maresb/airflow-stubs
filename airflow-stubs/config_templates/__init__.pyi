@@ -1,0 +1,2 @@
+from . import airflow_local_settings as airflow_local_settings
+from airflow.utils.deprecation_tools import add_deprecated_classes as add_deprecated_classes

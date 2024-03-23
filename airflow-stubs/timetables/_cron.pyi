@@ -1,0 +1,13 @@
+from airflow.exceptions import AirflowTimetableInvalid as AirflowTimetableInvalid
+from airflow.utils.timezone import convert_to_utc as convert_to_utc, make_aware as make_aware, make_naive as make_naive, parse_timezone as parse_timezone
+from typing import Any
+
+TYPE_CHECKING: bool
+cron_presets: dict
+
+class CronMixin:
+    def __init__(self, cron: str, timezone: str | Timezone | FixedTimezone) -> None: ...
+    def __eq__(self, other: Any) -> bool: ...
+    def validate(self) -> None: ...
+    @property
+    def summary(self): ...

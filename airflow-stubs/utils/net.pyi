@@ -1,0 +1,6 @@
+import functools
+from airflow.configuration import conf as conf
+
+getfqdn: functools._lru_cache_wrapper
+def get_host_ip_address(): ...
+def get_hostname(): ...

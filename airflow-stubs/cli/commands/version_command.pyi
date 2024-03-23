@@ -1,0 +1,3 @@
+import airflow as airflow
+
+def version(args): ...

@@ -1,0 +1,13 @@
+from airflow.configuration import conf as conf
+from airflow.executors.executor_loader import ExecutorLoader as ExecutorLoader
+from airflow.utils.session import find_session_idx as find_session_idx, provide_session as provide_session
+from airflow.utils.state import TaskInstanceState as TaskInstanceState
+
+TYPE_CHECKING: bool
+
+class DummySentry:
+    def add_tagging(self, task_instance): ...
+    def add_breadcrumbs(self, task_instance, session: Session | None = ...): ...
+    def enrich_errors(self, run): ...
+    def flush(self): ...
+Sentry: DummySentry

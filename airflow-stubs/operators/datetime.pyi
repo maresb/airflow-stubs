@@ -1,0 +1,16 @@
+import airflow.operators.branch
+import airflow.utils.timezone as timezone
+import datetime
+from airflow.exceptions import AirflowException as AirflowException, RemovedInAirflow3Warning as RemovedInAirflow3Warning
+from airflow.operators.branch import BaseBranchOperator as BaseBranchOperator
+from airflow.utils.decorators import warnings as warnings
+from typing import ClassVar, Iterable
+
+TYPE_CHECKING: bool
+
+class BranchDateTimeOperator(airflow.operators.branch.BaseBranchOperator):
+    __abstractmethods__: ClassVar[frozenset] = ...
+    _abc_impl: ClassVar[_abc_data] = ...
+    def __init__(self, *args, **kwargs) -> None: ...
+    def choose_branch(self, context: Context) -> str | Iterable[str]: ...
+def target_times_as_dates(base_date: datetime.datetime, lower: datetime.datetime | datetime.time | None, upper: datetime.datetime | datetime.time | None): ...
