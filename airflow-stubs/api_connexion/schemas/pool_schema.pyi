@@ -1,19 +1,22 @@
-import airflow.models.pool
-import collections
-import marshmallow.schema
-import marshmallow_sqlalchemy.schema
 from _typeshed import Incomplete
 from airflow.models.pool import Pool as Pool
-from typing import ClassVar
+from marshmallow import Schema
+from marshmallow_sqlalchemy import SQLAlchemySchema
+from typing import NamedTuple
 
-class PoolSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
+class PoolSchema(SQLAlchemySchema):
     class Meta:
-        model: ClassVar[type[airflow.models.pool.Pool]] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow_sqlalchemy.schema.SQLAlchemySchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+        model = Pool
+    name: Incomplete
+    slots: Incomplete
+    occupied_slots: Incomplete
+    running_slots: Incomplete
+    queued_slots: Incomplete
+    scheduled_slots: Incomplete
+    open_slots: Incomplete
+    deferred_slots: Incomplete
+    description: Incomplete
+    include_deferred: Incomplete
     @staticmethod
     def get_occupied_slots(obj: Pool) -> int: ...
     @staticmethod
@@ -27,21 +30,13 @@ class PoolSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
     @staticmethod
     def get_open_slots(obj: Pool) -> float: ...
 
-class PoolCollection(tuple):
-    _fields: ClassVar[tuple] = ...
-    _field_defaults: ClassVar[dict] = ...
-    _fields_defaults: ClassVar[dict] = ...
-    _field_types: ClassVar[dict] = ...
+class PoolCollection(NamedTuple):
+    pools: list[Pool]
+    total_entries: int
+
+class PoolCollectionSchema(Schema):
     pools: Incomplete
     total_entries: Incomplete
-    def __init__(self, _cls, pools: list[Pool], total_entries: int) -> None: ...
-    def __getnewargs__(self): ...
 
-class PoolCollectionSchema(marshmallow.schema.Schema):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow.schema.SchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
-pool_collection_schema: PoolCollectionSchema
-pool_schema: PoolSchema
+pool_collection_schema: Incomplete
+pool_schema: Incomplete

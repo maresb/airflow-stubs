@@ -1,15 +1,11 @@
-import airflow.decorators.python
-import airflow.operators.python
-from airflow.decorators.base import task_decorator_factory as task_decorator_factory
+from _typeshed import Incomplete
+from airflow.decorators.base import TaskDecorator as TaskDecorator, task_decorator_factory as task_decorator_factory
+from airflow.decorators.python import _PythonDecoratedOperator
 from airflow.operators.python import BranchExternalPythonOperator as BranchExternalPythonOperator
-from typing import Callable, ClassVar
+from typing import Callable
 
-TYPE_CHECKING: bool
+class _BranchExternalPythonDecoratedOperator(_PythonDecoratedOperator, BranchExternalPythonOperator):
+    template_fields: Incomplete
+    custom_operator_name: str
 
-class _BranchExternalPythonDecoratedOperator(airflow.decorators.python._PythonDecoratedOperator, airflow.operators.python.BranchExternalPythonOperator):
-    template_fields: ClassVar[tuple] = ...
-    custom_operator_name: ClassVar[str] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    def __init__(self, *args, **kwargs) -> None: ...
-def branch_external_python_task(python_callable: Callable | None = ..., multiple_outputs: bool | None = ..., **kwargs) -> TaskDecorator: ...
+def branch_external_python_task(python_callable: Callable | None = None, multiple_outputs: bool | None = None, **kwargs) -> TaskDecorator: ...

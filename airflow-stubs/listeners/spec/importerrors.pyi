@@ -1,0 +1,6 @@
+from _typeshed import Incomplete
+
+hookspec: Incomplete
+
+def on_new_dag_import_error(filename, stacktrace) -> None: ...
+def on_existing_dag_import_error(filename, stacktrace) -> None: ...

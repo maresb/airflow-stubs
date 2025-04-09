@@ -5,4 +5,5 @@ from typing import Any
 
 HEALTHY: str
 UNHEALTHY: str
+
 def get_airflow_health() -> dict[str, Any]: ...

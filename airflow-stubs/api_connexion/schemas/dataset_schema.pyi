@@ -1,94 +1,116 @@
-import airflow.models.dagrun
-import airflow.models.dataset
-import collections
-import marshmallow.schema
-import marshmallow_sqlalchemy.schema
 from _typeshed import Incomplete
 from airflow.api_connexion.schemas.common_schema import JsonObjectField as JsonObjectField
 from airflow.models.dagrun import DagRun as DagRun
-from airflow.models.dataset import DagScheduleDatasetReference as DagScheduleDatasetReference, DatasetEvent as DatasetEvent, DatasetModel as DatasetModel, TaskOutletDatasetReference as TaskOutletDatasetReference
-from typing import ClassVar
+from airflow.models.dataset import DagScheduleDatasetReference as DagScheduleDatasetReference, DatasetAliasModel as DatasetAliasModel, DatasetEvent as DatasetEvent, DatasetModel as DatasetModel, TaskOutletDatasetReference as TaskOutletDatasetReference
+from datetime import datetime
+from marshmallow import Schema
+from marshmallow_sqlalchemy import SQLAlchemySchema
+from typing import NamedTuple
 
-class TaskOutletDatasetReferenceSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
+class TaskOutletDatasetReferenceSchema(SQLAlchemySchema):
     class Meta:
-        model: ClassVar[type[airflow.models.dataset.TaskOutletDatasetReference]] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow_sqlalchemy.schema.SQLAlchemySchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+        model = TaskOutletDatasetReference
+    dag_id: Incomplete
+    task_id: Incomplete
+    created_at: Incomplete
+    updated_at: Incomplete
 
-class DagScheduleDatasetReferenceSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
+class DagScheduleDatasetReferenceSchema(SQLAlchemySchema):
     class Meta:
-        model: ClassVar[type[airflow.models.dataset.DagScheduleDatasetReference]] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow_sqlalchemy.schema.SQLAlchemySchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+        model = DagScheduleDatasetReference
+    dag_id: Incomplete
+    created_at: Incomplete
+    updated_at: Incomplete
 
-class DatasetSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
+class DatasetAliasSchema(SQLAlchemySchema):
     class Meta:
-        model: ClassVar[type[airflow.models.dataset.DatasetModel]] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow_sqlalchemy.schema.SQLAlchemySchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+        model = DatasetAliasModel
+    id: Incomplete
+    name: Incomplete
 
-class DatasetCollection(tuple):
-    _fields: ClassVar[tuple] = ...
-    _field_defaults: ClassVar[dict] = ...
-    _fields_defaults: ClassVar[dict] = ...
-    _field_types: ClassVar[dict] = ...
+class DatasetSchema(SQLAlchemySchema):
+    class Meta:
+        model = DatasetModel
+    id: Incomplete
+    uri: Incomplete
+    extra: Incomplete
+    created_at: Incomplete
+    updated_at: Incomplete
+    producing_tasks: Incomplete
+    consuming_dags: Incomplete
+    aliases: Incomplete
+
+class DatasetCollection(NamedTuple):
+    datasets: list[DatasetModel]
+    total_entries: int
+
+class DatasetCollectionSchema(Schema):
     datasets: Incomplete
     total_entries: Incomplete
-    def __init__(self, _cls, datasets: list[DatasetModel], total_entries: int) -> None: ...
-    def __getnewargs__(self): ...
 
-class DatasetCollectionSchema(marshmallow.schema.Schema):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow.schema.SchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
-dataset_schema: DatasetSchema
-dataset_collection_schema: DatasetCollectionSchema
+dataset_schema: Incomplete
+dataset_collection_schema: Incomplete
 
-class BasicDAGRunSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
+class BasicDAGRunSchema(SQLAlchemySchema):
     class Meta:
-        model: ClassVar[type[airflow.models.dagrun.DagRun]] = ...
-        dateformat: ClassVar[str] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow_sqlalchemy.schema.SQLAlchemySchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+        model = DagRun
+        dateformat: str
+    run_id: Incomplete
+    dag_id: Incomplete
+    execution_date: Incomplete
+    start_date: Incomplete
+    end_date: Incomplete
+    state: Incomplete
+    data_interval_start: Incomplete
+    data_interval_end: Incomplete
 
-class DatasetEventSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
+class DatasetEventSchema(SQLAlchemySchema):
     class Meta:
-        model: ClassVar[type[airflow.models.dataset.DatasetEvent]] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow_sqlalchemy.schema.SQLAlchemySchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+        model = DatasetEvent
+    id: Incomplete
+    dataset_id: Incomplete
+    dataset_uri: Incomplete
+    extra: Incomplete
+    source_task_id: Incomplete
+    source_dag_id: Incomplete
+    source_run_id: Incomplete
+    source_map_index: Incomplete
+    created_dagruns: Incomplete
+    timestamp: Incomplete
 
-class DatasetEventCollection(tuple):
-    _fields: ClassVar[tuple] = ...
-    _field_defaults: ClassVar[dict] = ...
-    _fields_defaults: ClassVar[dict] = ...
-    _field_types: ClassVar[dict] = ...
+class DatasetEventCollection(NamedTuple):
+    dataset_events: list[DatasetEvent]
+    total_entries: int
+
+class DatasetEventCollectionSchema(Schema):
     dataset_events: Incomplete
     total_entries: Incomplete
-    def __init__(self, _cls, dataset_events: list[DatasetEvent], total_entries: int) -> None: ...
-    def __getnewargs__(self): ...
 
-class DatasetEventCollectionSchema(marshmallow.schema.Schema):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow.schema.SchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
-dataset_event_schema: DatasetEventSchema
-dataset_event_collection_schema: DatasetEventCollectionSchema
+class CreateDatasetEventSchema(Schema):
+    dataset_uri: Incomplete
+    extra: Incomplete
+
+dataset_event_schema: Incomplete
+dataset_event_collection_schema: Incomplete
+create_dataset_event_schema: Incomplete
+
+class QueuedEvent(NamedTuple):
+    uri: str
+    dag_id: str
+    created_at: datetime
+
+class QueuedEventSchema(Schema):
+    uri: Incomplete
+    dag_id: Incomplete
+    created_at: Incomplete
+
+class QueuedEventCollection(NamedTuple):
+    queued_events: list[QueuedEvent]
+    total_entries: int
+
+class QueuedEventCollectionSchema(Schema):
+    queued_events: Incomplete
+    total_entries: Incomplete
+
+queued_event_schema: Incomplete
+queued_event_collection_schema: Incomplete

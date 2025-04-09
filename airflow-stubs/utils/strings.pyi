@@ -1,4 +1,7 @@
-def get_random_string(length: int = ..., choices: str = ...): ...
+from _typeshed import Incomplete
 
-TRUE_LIKE_VALUES: set
+def get_random_string(length: int = 8, choices=...): ...
+
+TRUE_LIKE_VALUES: Incomplete
+
 def to_boolean(astring: str | None) -> bool: ...

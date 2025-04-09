@@ -1,11 +1,9 @@
 import abc
-import k8s
-from typing import ClassVar
+from abc import ABC, abstractmethod
+from kubernetes.client import models as k8s
 
-TYPE_CHECKING: bool
-
-class K8SModel(abc.ABC):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
+class K8SModel(ABC, metaclass=abc.ABCMeta):
+    @abstractmethod
     def attach_to_pod(self, pod: k8s.V1Pod) -> k8s.V1Pod: ...
+
 def append_to_pod(pod: k8s.V1Pod, k8s_objects: list[K8SModel] | None): ...

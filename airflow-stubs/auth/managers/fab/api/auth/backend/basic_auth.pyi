@@ -1,10 +1,9 @@
-import typing
-from airflow.utils.airflow_flask_app import get_airflow_app as get_airflow_app
+from airflow.exceptions import RemovedInAirflow3Warning as RemovedInAirflow3Warning
+from airflow.providers.fab.auth_manager.models import User as User
+from typing import Any, Callable
 
-TYPE_CHECKING: bool
-AUTH_LDAP: int
-CLIENT_AUTH: None
-T: typing.TypeVar
-def init_app(_): ...
+CLIENT_AUTH: tuple[str, str] | Any | None
+
+def init_app(_) -> None: ...
 def auth_current_user() -> User | None: ...
-def requires_authentication(function: T): ...
+def requires_authentication(function: Callable): ...

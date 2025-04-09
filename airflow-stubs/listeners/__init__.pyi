@@ -1,1 +1,3 @@
-from . import listener as listener
+from _typeshed import Incomplete
+
+hookimpl: Incomplete

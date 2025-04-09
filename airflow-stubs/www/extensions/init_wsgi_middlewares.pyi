@@ -1,5 +1,6 @@
+from _typeshed.wsgi import WSGIEnvironment as WSGIEnvironment
 from airflow.configuration import conf as conf
 from airflow.exceptions import AirflowConfigException as AirflowConfigException
+from flask import Flask as Flask
 
-TYPE_CHECKING: bool
 def init_wsgi_middleware(flask_app: Flask) -> None: ...

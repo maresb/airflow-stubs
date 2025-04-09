@@ -1,7 +1,12 @@
+from _typeshed import Incomplete
 from airflow.decorators import task as task
-from airflow.decorators.base import my_py_command as my_py_command, print_env_vars as print_env_vars
-from airflow.models.dag import DAG as DAG, dag as dag
-from airflow.models.xcom_arg import env_var_test_task as env_var_test_task, run_this as run_this
-from airflow.operators.bash import BashOperator as BashOperator, also_run_this as also_run_this
+from airflow.models.dag import DAG as DAG
+from airflow.operators.bash import BashOperator as BashOperator
 
-my_command: str
+def my_py_command(params, test_mode: Incomplete | None = None, task: Incomplete | None = None): ...
+def print_env_vars(test_mode: Incomplete | None = None) -> None: ...
+
+run_this: Incomplete
+my_command: Incomplete
+also_run_this: Incomplete
+env_var_test_task: Incomplete

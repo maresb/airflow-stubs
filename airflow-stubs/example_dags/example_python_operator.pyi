@@ -1,12 +1,26 @@
 from _typeshed import Incomplete
 from airflow.models.dag import DAG as DAG
-from airflow.operators.python import ExternalPythonOperator as ExternalPythonOperator, PythonOperator as PythonOperator, PythonVirtualenvOperator as PythonVirtualenvOperator, external_python_task as external_python_task, is_venv_installed as is_venv_installed, log_the_sql as log_the_sql, run_this as run_this, sleeping_task as sleeping_task, virtualenv_task as virtualenv_task
+from airflow.operators.python import ExternalPythonOperator as ExternalPythonOperator, PythonOperator as PythonOperator, PythonVirtualenvOperator as PythonVirtualenvOperator, is_venv_installed as is_venv_installed
 
-PATH_TO_PYTHON_BINARY: str
-def print_context(ds: Incomplete | None = ..., **kwargs): ...
-def log_sql(**kwargs): ...
-def my_sleeping_function(random_base): ...
+log: Incomplete
+PATH_TO_PYTHON_BINARY: Incomplete
 
-i: int
-def callable_virtualenv(): ...
-def callable_external_python(): ...
+def print_context(ds: Incomplete | None = None, **kwargs): ...
+
+run_this: Incomplete
+
+def log_sql(**kwargs) -> None: ...
+
+log_the_sql: Incomplete
+
+def my_sleeping_function(random_base) -> None: ...
+
+sleeping_task: Incomplete
+
+def callable_virtualenv() -> None: ...
+
+virtualenv_task: Incomplete
+
+def callable_external_python() -> None: ...
+
+external_python_task: Incomplete

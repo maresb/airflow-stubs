@@ -1,9 +1,8 @@
-from airflow.exceptions import AirflowBadRequest as AirflowBadRequest, PoolNotFound as PoolNotFound
-from airflow.models.pool import Pool as Pool
-from airflow.utils.session import provide_session as provide_session
+from airflow.exceptions import AirflowBadRequest as AirflowBadRequest, PoolNotFound as PoolNotFound, RemovedInAirflow3Warning as RemovedInAirflow3Warning
+from airflow.models import Pool as Pool
+from airflow.utils.session import NEW_SESSION as NEW_SESSION, provide_session as provide_session
+from sqlalchemy.orm import Session as Session
 
-TYPE_CHECKING: bool
-NEW_SESSION: None
 def get_pool(name, session: Session = ...): ...
 def get_pools(session: Session = ...): ...
 def create_pool(name, slots, description, session: Session = ...): ...

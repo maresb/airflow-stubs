@@ -1,3 +1,10 @@
-from airflow.datasets import Dataset as Dataset, dag1_dataset as dag1_dataset, dag2_dataset as dag2_dataset
-from airflow.models.dag import DAG as DAG, dag1 as dag1, dag2 as dag2, dag3 as dag3, dag4 as dag4, dag5 as dag5, dag6 as dag6
+from _typeshed import Incomplete
+from airflow.datasets import Dataset as Dataset
+from airflow.models.dag import DAG as DAG
 from airflow.operators.bash import BashOperator as BashOperator
+from airflow.timetables.datasets import DatasetOrTimeSchedule as DatasetOrTimeSchedule
+from airflow.timetables.trigger import CronTriggerTimetable as CronTriggerTimetable
+
+dag1_dataset: Incomplete
+dag2_dataset: Incomplete
+dag3_dataset: Incomplete

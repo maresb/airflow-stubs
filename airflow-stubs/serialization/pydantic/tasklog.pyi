@@ -1,6 +1,10 @@
-import airflow.utils.pydantic
-from airflow.utils.pydantic import BaseModelPydantic as BaseModelPydantic, ConfigDict as ConfigDict
-from typing import ClassVar
+from _typeshed import Incomplete
+from airflow.utils.pydantic import BaseModel as BaseModelPydantic, ConfigDict as ConfigDict
+from datetime import datetime
 
-class LogTemplatePydantic(airflow.utils.pydantic.BaseModel):
-    model_config: ClassVar[airflow.utils.pydantic.ConfigDict] = ...
+class LogTemplatePydantic(BaseModelPydantic):
+    id: int
+    filename: str
+    elasticsearch_id: str
+    created_at: datetime
+    model_config: Incomplete

@@ -1,0 +1,6 @@
+from typing import Callable
+
+__all__ = ['run_if', 'skip_if']
+
+def run_if(condition: AnyConditionFunc, skip_message: str | None = None) -> Callable[[_T], _T]: ...
+def skip_if(condition: AnyConditionFunc, skip_message: str | None = None) -> Callable[[_T], _T]: ...

@@ -1,4 +1,8 @@
-TYPE_CHECKING: bool
+from _typeshed import Incomplete
+from airflow.models.dagrun import DagRun as DagRun
+
+hookspec: Incomplete
+
 def on_dag_run_running(dag_run: DagRun, msg: str): ...
 def on_dag_run_success(dag_run: DagRun, msg: str): ...
 def on_dag_run_failed(dag_run: DagRun, msg: str): ...

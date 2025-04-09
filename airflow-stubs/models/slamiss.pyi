@@ -1,20 +1,9 @@
-import sqlalchemy.orm.decl_api
-import sqlalchemy.orm.instrumentation
-import sqlalchemy.orm.mapper
-import sqlalchemy.sql.schema
 from _typeshed import Incomplete
+from airflow.models.base import Base as Base, COLLATION_ARGS as COLLATION_ARGS, ID_LEN as ID_LEN
 from airflow.utils.sqlalchemy import UtcDateTime as UtcDateTime
-from typing import ClassVar
 
-COLLATION_ARGS: dict
-ID_LEN: int
-
-class SlaMiss(sqlalchemy.orm.decl_api.Base):
-    __tablename__: ClassVar[str] = ...
-    __table_args__: ClassVar[tuple] = ...
-    _sa_class_manager: ClassVar[sqlalchemy.orm.instrumentation.ClassManager] = ...
-    __table__: ClassVar[sqlalchemy.sql.schema.Table] = ...
-    __mapper__: ClassVar[sqlalchemy.orm.mapper.Mapper] = ...
+class SlaMiss(Base):
+    __tablename__: str
     task_id: Incomplete
     dag_id: Incomplete
     execution_date: Incomplete
@@ -22,4 +11,4 @@ class SlaMiss(sqlalchemy.orm.decl_api.Base):
     timestamp: Incomplete
     description: Incomplete
     notification_sent: Incomplete
-    def __init__(self, **kwargs) -> None: ...
+    __table_args__: Incomplete

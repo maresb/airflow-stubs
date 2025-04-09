@@ -1,10 +1,8 @@
-import airflow.callbacks.base_callback_sink
 from airflow.callbacks.base_callback_sink import BaseCallbackSink as BaseCallbackSink
+from airflow.callbacks.callback_requests import CallbackRequest as CallbackRequest
 from airflow.models.db_callback_request import DbCallbackRequest as DbCallbackRequest
-from airflow.utils.session import provide_session as provide_session
+from airflow.utils.session import NEW_SESSION as NEW_SESSION, provide_session as provide_session
+from sqlalchemy.orm import Session as Session
 
-TYPE_CHECKING: bool
-NEW_SESSION: None
-
-class DatabaseCallbackSink(airflow.callbacks.base_callback_sink.BaseCallbackSink):
-    def send(self, *args, **kwargs) -> None: ...
+class DatabaseCallbackSink(BaseCallbackSink):
+    def send(self, callback: CallbackRequest, session: Session = ...) -> None: ...

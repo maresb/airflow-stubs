@@ -1,14 +1,11 @@
-import airflow.api.client.api_client
-import airflow.api.client.api_client as api_client
-import airflow.api.common.delete_dag as delete_dag
-import airflow.api.common.trigger_dag as trigger_dag
 from _typeshed import Incomplete
-from airflow.api.common.experimental.get_lineage import get_lineage_api as get_lineage_api
+from airflow.api.client import api_client as api_client
+from airflow.api.common import delete_dag as delete_dag, trigger_dag as trigger_dag
 from airflow.exceptions import AirflowBadRequest as AirflowBadRequest, PoolNotFound as PoolNotFound
 from airflow.models.pool import Pool as Pool
 
-class Client(airflow.api.client.api_client.Client):
-    def trigger_dag(self, dag_id, run_id: Incomplete | None = ..., conf: Incomplete | None = ..., execution_date: Incomplete | None = ..., replace_microseconds: bool = ...) -> dict | None: ...
+class Client(api_client.Client):
+    def trigger_dag(self, dag_id, run_id: Incomplete | None = None, conf: Incomplete | None = None, execution_date: Incomplete | None = None, replace_microseconds: bool = True) -> dict | None: ...
     def delete_dag(self, dag_id): ...
     def get_pool(self, name): ...
     def get_pools(self): ...

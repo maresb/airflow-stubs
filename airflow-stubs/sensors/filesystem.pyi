@@ -1,14 +1,26 @@
-import airflow.sensors.base
+from _typeshed import Incomplete
+from airflow.configuration import conf as conf
+from airflow.exceptions import AirflowException as AirflowException
 from airflow.hooks.filesystem import FSHook as FSHook
 from airflow.sensors.base import BaseSensorOperator as BaseSensorOperator
-from typing import ClassVar
+from airflow.triggers.base import StartTriggerArgs as StartTriggerArgs
+from airflow.triggers.file import FileTrigger as FileTrigger
+from airflow.utils.context import Context as Context
+from functools import cached_property as cached_property
+from typing import Any, Sequence
 
-TYPE_CHECKING: bool
-
-class FileSensor(airflow.sensors.base.BaseSensorOperator):
-    template_fields: ClassVar[tuple] = ...
-    ui_color: ClassVar[str] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    def __init__(self, *args, **kwargs) -> None: ...
-    def poke(self, context: Context): ...
+class FileSensor(BaseSensorOperator):
+    template_fields: Sequence[str]
+    ui_color: str
+    start_trigger_args: Incomplete
+    start_from_trigger: bool
+    filepath: Incomplete
+    fs_conn_id: Incomplete
+    recursive: Incomplete
+    deferrable: Incomplete
+    def __init__(self, *, filepath, fs_conn_id: str = 'fs_default', recursive: bool = False, deferrable: bool = ..., start_from_trigger: bool = False, trigger_kwargs: dict[str, Any] | None = None, **kwargs) -> None: ...
+    @cached_property
+    def path(self) -> str: ...
+    def poke(self, context: Context) -> bool: ...
+    def execute(self, context: Context) -> None: ...
+    def execute_complete(self, context: Context, event: bool | None = None) -> None: ...

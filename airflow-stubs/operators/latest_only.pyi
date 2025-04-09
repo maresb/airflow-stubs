@@ -1,12 +1,8 @@
-import airflow.operators.branch
+from airflow.models import DAG as DAG, DagRun as DagRun
 from airflow.operators.branch import BaseBranchOperator as BaseBranchOperator
-from typing import ClassVar, Iterable
+from airflow.utils.context import Context as Context
+from typing import Iterable
 
-TYPE_CHECKING: bool
-
-class LatestOnlyOperator(airflow.operators.branch.BaseBranchOperator):
-    ui_color: ClassVar[str] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
+class LatestOnlyOperator(BaseBranchOperator):
+    ui_color: str
     def choose_branch(self, context: Context) -> str | Iterable[str]: ...
-    def __init__(self, *args, **kwargs) -> None: ...

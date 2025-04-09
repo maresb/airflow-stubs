@@ -1,19 +1,16 @@
-import airflow.metrics.base_stats_logger
+from _typeshed import Incomplete
 from airflow.configuration import conf as conf
-from airflow.metrics.base_stats_logger import NoStatsLogger as NoStatsLogger
-from typing import ClassVar
+from airflow.metrics.base_stats_logger import NoStatsLogger as NoStatsLogger, StatsLogger as StatsLogger
+from typing import Callable
 
-TYPE_CHECKING: bool
+log: Incomplete
 
 class _Stats(type):
-    instance: ClassVar[None] = ...
-    factory: ClassVar[type[airflow.metrics.base_stats_logger.NoStatsLogger]] = ...
-    @classmethod
+    factory: Callable
+    instance: StatsLogger | NoStatsLogger | None
     def __getattr__(cls, name: str) -> str: ...
-    @classmethod
     def __init__(cls, *args, **kwargs) -> None: ...
     @classmethod
     def get_constant_tags(cls) -> list[str]: ...
 
-class Stats:
-    instance: ClassVar[airflow.metrics.base_stats_logger.NoStatsLogger] = ...
+Stats: StatsLogger

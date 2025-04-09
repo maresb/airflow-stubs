@@ -1,22 +1,21 @@
-import flask_appbuilder.fieldwidgets
-import flask_appbuilder.widgets
-from typing import ClassVar
+from flask_appbuilder.fieldwidgets import BS3TextAreaFieldWidget, BS3TextFieldWidget
+from flask_appbuilder.widgets import RenderTemplateWidget
 
-class AirflowModelListWidget(flask_appbuilder.widgets.RenderTemplateWidget):
-    template: ClassVar[str] = ...
+class AirflowModelListWidget(RenderTemplateWidget):
+    template: str
 
 class AirflowDateTimePickerWidget:
-    data_template: ClassVar[str] = ...
+    data_template: str
     def __call__(self, field, **kwargs): ...
 
 class AirflowDateTimePickerROWidget(AirflowDateTimePickerWidget):
     def __call__(self, field, **kwargs): ...
 
-class BS3TextFieldROWidget(flask_appbuilder.fieldwidgets.BS3TextFieldWidget):
+class BS3TextFieldROWidget(BS3TextFieldWidget):
     def __call__(self, field, **kwargs): ...
 
-class BS3TextAreaROWidget(flask_appbuilder.fieldwidgets.BS3TextAreaFieldWidget):
+class BS3TextAreaROWidget(BS3TextAreaFieldWidget):
     def __call__(self, field, **kwargs): ...
 
-class AirflowVariableShowWidget(flask_appbuilder.widgets.RenderTemplateWidget):
-    template: ClassVar[str] = ...
+class AirflowVariableShowWidget(RenderTemplateWidget):
+    template: str

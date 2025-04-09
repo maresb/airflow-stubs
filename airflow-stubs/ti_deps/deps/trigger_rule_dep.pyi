@@ -1,32 +1,26 @@
-import airflow.ti_deps.deps.base_ti_dep
-from _typeshed import Incomplete
-from airflow.ti_deps.deps.base_ti_dep import BaseTIDep as BaseTIDep
+from airflow import DAG as DAG
+from airflow.models.taskinstance import PAST_DEPENDS_MET as PAST_DEPENDS_MET, TaskInstance as TaskInstance
+from airflow.ti_deps.dep_context import DepContext as DepContext
+from airflow.ti_deps.deps.base_ti_dep import BaseTIDep as BaseTIDep, TIDepStatus as TIDepStatus
 from airflow.utils.state import TaskInstanceState as TaskInstanceState
-from airflow.utils.trigger_rule import TR as TR
-from typing import ClassVar, Iterator
+from airflow.utils.task_group import MappedTaskGroup as MappedTaskGroup
+from sqlalchemy.orm import Session as Session
+from sqlalchemy.sql.expression import ColumnOperators as ColumnOperators
+from typing import Iterator, NamedTuple
 
-TYPE_CHECKING: bool
-PAST_DEPENDS_MET: str
-
-class _UpstreamTIStates(tuple):
-    _fields: ClassVar[tuple] = ...
-    _field_defaults: ClassVar[dict] = ...
-    _fields_defaults: ClassVar[dict] = ...
-    _field_types: ClassVar[dict] = ...
-    success: Incomplete
-    skipped: Incomplete
-    failed: Incomplete
-    upstream_failed: Incomplete
-    removed: Incomplete
-    done: Incomplete
-    success_setup: Incomplete
-    skipped_setup: Incomplete
-    def __init__(self, _cls, success: int, skipped: int, failed: int, upstream_failed: int, removed: int, done: int, success_setup: int, skipped_setup: int) -> None: ...
-    def __getnewargs__(self): ...
+class _UpstreamTIStates(NamedTuple):
+    success: int
+    skipped: int
+    failed: int
+    upstream_failed: int
+    removed: int
+    done: int
+    success_setup: int
+    skipped_setup: int
     @classmethod
     def calculate(cls, finished_upstreams: Iterator[TaskInstance]) -> _UpstreamTIStates: ...
 
-class TriggerRuleDep(airflow.ti_deps.deps.base_ti_dep.BaseTIDep):
-    NAME: ClassVar[str] = ...
-    IGNORABLE: ClassVar[bool] = ...
-    IS_TASK_DEP: ClassVar[bool] = ...
+class TriggerRuleDep(BaseTIDep):
+    NAME: str
+    IGNORABLE: bool
+    IS_TASK_DEP: bool

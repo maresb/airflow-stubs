@@ -1,19 +1,29 @@
-import airflow.settings as settings
-import typing
-from airflow.utils.context import Context as Context, lazy_mapping_from_context as lazy_mapping_from_context
-from typing import Any, Callable, Collection, Mapping
+import logging
+from _typeshed import Incomplete
+from airflow import settings as settings
+from airflow.utils.context import Context as Context, OutletEventAccessors as OutletEventAccessors, lazy_mapping_from_context as lazy_mapping_from_context
+from typing import Any, Callable, Collection, Mapping, TypeVar
 
-R: typing.TypeVar
+R = TypeVar('R')
 DEFAULT_FORMAT_PREFIX: str
 ENV_VAR_FORMAT_PREFIX: str
-AIRFLOW_VAR_NAME_FORMAT_MAPPING: dict
-def context_to_airflow_vars(context: Mapping[str, Any], in_env_var_format: bool = ...) -> dict[str, str]: ...
+AIRFLOW_VAR_NAME_FORMAT_MAPPING: Incomplete
+
+def context_to_airflow_vars(context: Mapping[str, Any], in_env_var_format: bool = False) -> dict[str, str]: ...
 
 class KeywordParameters:
-    def __init__(self, kwargs: Mapping[str, Any]) -> None: ...
+    def __init__(self, kwargs: Mapping[str, Any], *, wildcard: bool) -> None: ...
     @classmethod
     def determine(cls, func: Callable[..., Any], args: Collection[Any], kwargs: Mapping[str, Any]) -> KeywordParameters: ...
     def unpacking(self) -> Mapping[str, Any]: ...
     def serializing(self) -> Mapping[str, Any]: ...
+
 def determine_kwargs(func: Callable[..., Any], args: Collection[Any], kwargs: Mapping[str, Any]) -> Mapping[str, Any]: ...
 def make_kwargs_callable(func: Callable[..., R]) -> Callable[..., R]: ...
+
+class ExecutionCallableRunner:
+    func: Incomplete
+    outlet_events: Incomplete
+    logger: Incomplete
+    def __init__(self, func: Callable, outlet_events: OutletEventAccessors, *, logger: logging.Logger | None) -> None: ...
+    def run(self, *args, **kwargs) -> Any: ...

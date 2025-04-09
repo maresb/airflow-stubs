@@ -1,5 +1,4 @@
 import hashlib
+from _typeshed import ReadableBuffer as ReadableBuffer
 
-TYPE_CHECKING: bool
-PY39: bool
-def md5(__string: ReadableBuffer = ...) -> hashlib._Hash: ...
+def md5(__string: ReadableBuffer = b'', /) -> hashlib._Hash: ...

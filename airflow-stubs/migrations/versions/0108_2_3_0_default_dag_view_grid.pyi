@@ -1,7 +1,11 @@
+from _typeshed import Incomplete
+
 revision: str
 down_revision: str
-branch_labels: None
+branch_labels: Incomplete
 depends_on: str
 airflow_version: str
-def upgrade(): ...
-def downgrade(): ...
+dag: Incomplete
+
+def upgrade() -> None: ...
+def downgrade() -> None: ...

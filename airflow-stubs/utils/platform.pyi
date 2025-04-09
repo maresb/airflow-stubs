@@ -1,8 +1,10 @@
-import functools
+from _typeshed import Incomplete
+from airflow.compat.functools import cache as cache
 
-IS_WINDOWS: bool
+IS_WINDOWS: Incomplete
+log: Incomplete
+
 def is_tty(): ...
 def is_terminal_support_colors() -> bool: ...
 def get_airflow_git_version(): ...
-
-getuser: functools._lru_cache_wrapper
+def getuser() -> str: ...

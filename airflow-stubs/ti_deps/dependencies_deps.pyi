@@ -1,3 +1,5 @@
+from _typeshed import Incomplete
+from airflow.ti_deps.dependencies_states import BACKFILL_QUEUEABLE_STATES as BACKFILL_QUEUEABLE_STATES, QUEUEABLE_STATES as QUEUEABLE_STATES, RUNNABLE_STATES as RUNNABLE_STATES
 from airflow.ti_deps.deps.dag_ti_slots_available_dep import DagTISlotsAvailableDep as DagTISlotsAvailableDep
 from airflow.ti_deps.deps.dag_unpaused_dep import DagUnpausedDep as DagUnpausedDep
 from airflow.ti_deps.deps.dagrun_backfill_dep import DagRunNotBackfillDep as DagRunNotBackfillDep
@@ -9,12 +11,7 @@ from airflow.ti_deps.deps.task_concurrency_dep import TaskConcurrencyDep as Task
 from airflow.ti_deps.deps.task_not_running_dep import TaskNotRunningDep as TaskNotRunningDep
 from airflow.ti_deps.deps.valid_state_dep import ValidStateDep as ValidStateDep
 
-BACKFILL_QUEUEABLE_STATES: set
-QUEUEABLE_STATES: set
-RUNNABLE_STATES: set
-SCHEDULEABLE_STATES: set
-SCHEDULED_DEPS: set
-REQUEUEABLE_DEPS: set
-RUNNING_DEPS: set
-BACKFILL_QUEUED_DEPS: set
-SCHEDULER_QUEUED_DEPS: set
+REQUEUEABLE_DEPS: Incomplete
+RUNNING_DEPS: Incomplete
+BACKFILL_QUEUED_DEPS: Incomplete
+SCHEDULER_QUEUED_DEPS: Incomplete

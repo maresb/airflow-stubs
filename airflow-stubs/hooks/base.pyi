@@ -1,13 +1,14 @@
-import airflow.utils.log.logging_mixin
-import typing
+from _typeshed import Incomplete
 from airflow.exceptions import RemovedInAirflow3Warning as RemovedInAirflow3Warning
+from airflow.models.connection import Connection as Connection
+from airflow.typing_compat import Protocol as Protocol
 from airflow.utils.log.logging_mixin import LoggingMixin as LoggingMixin
-from typing import Any, ClassVar
+from typing import Any
 
-TYPE_CHECKING: bool
+log: Incomplete
 
-class BaseHook(airflow.utils.log.logging_mixin.LoggingMixin):
-    def __init__(self, logger_name: str | None = ...) -> None: ...
+class BaseHook(LoggingMixin):
+    def __init__(self, logger_name: str | None = None) -> None: ...
     @classmethod
     def get_connections(cls, conn_id: str) -> list[Connection]: ...
     @classmethod
@@ -20,14 +21,12 @@ class BaseHook(airflow.utils.log.logging_mixin.LoggingMixin):
     @classmethod
     def get_ui_field_behaviour(cls) -> dict[str, Any]: ...
 
-class DiscoverableHook(typing.Protocol):
-    __parameters__: ClassVar[tuple] = ...
-    _is_protocol: ClassVar[bool] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
+class DiscoverableHook(Protocol):
+    conn_name_attr: str
+    default_conn_name: str
+    conn_type: str
+    hook_name: str
     @staticmethod
     def get_connection_form_widgets() -> dict[str, Any]: ...
     @staticmethod
     def get_ui_field_behaviour() -> dict[str, Any]: ...
-    def __subclasshook__(self, other): ...
-    def __init__(self, *args, **kwargs) -> None: ...
