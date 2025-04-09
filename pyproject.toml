@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
 name = "airflow-stubs"
-version = "0.0.1"
+dynamic = ["version"]
 description = 'Type stubs for when Airflow is not installed'
 readme = "README.md"
 requires-python = ">=3.8"
@@ -33,3 +33,9 @@ Source = "https://github.com/maresb/airflow-stubs"
 
 [tool.hatch.build.targets.wheel]
 packages = ["airflow-stubs"]
+
+[tool.hatch.version]
+# Determine the version number based on Git tags
+source = "vcs"
+# Ensure that the version number is of the form vX.Y.Z
+tag-pattern = '''^v(\d+\.\d+\.\d+)$'''
