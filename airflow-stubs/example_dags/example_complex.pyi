@@ -1,6 +1,44 @@
+from _typeshed import Incomplete
 from airflow.models.baseoperator import chain as chain
-from airflow.models.dag import DAG as DAG, dag as dag
-from airflow.operators.bash import BashOperator as BashOperator, create_entry_gcs as create_entry_gcs, create_entry_gcs_result as create_entry_gcs_result, create_entry_gcs_result2 as create_entry_gcs_result2, create_entry_group as create_entry_group, create_entry_group_result as create_entry_group_result, create_entry_group_result2 as create_entry_group_result2, create_tag as create_tag, create_tag_result as create_tag_result, create_tag_result2 as create_tag_result2, create_tag_template as create_tag_template, create_tag_template_field as create_tag_template_field, create_tag_template_field_result as create_tag_template_field_result, create_tag_template_field_result2 as create_tag_template_field_result2, create_tag_template_result as create_tag_template_result, create_tag_template_result2 as create_tag_template_result2, delete_entry as delete_entry, delete_entry_group as delete_entry_group, delete_tag as delete_tag, delete_tag_template as delete_tag_template, delete_tag_template_field as delete_tag_template_field, get_entry as get_entry, get_entry_group as get_entry_group, get_entry_group_result as get_entry_group_result, get_entry_result as get_entry_result, get_tag_template as get_tag_template, get_tag_template_result as get_tag_template_result, list_tags as list_tags, list_tags_result as list_tags_result, lookup_entry as lookup_entry, lookup_entry_result as lookup_entry_result, rename_tag_template_field as rename_tag_template_field, search_catalog as search_catalog, search_catalog_result as search_catalog_result, update_entry as update_entry, update_tag as update_tag, update_tag_template as update_tag_template, update_tag_template_field as update_tag_template_field
+from airflow.models.dag import DAG as DAG
+from airflow.operators.bash import BashOperator as BashOperator
 
-create_tasks: list
-delete_tasks: list
+create_entry_group: Incomplete
+create_entry_group_result: Incomplete
+create_entry_group_result2: Incomplete
+create_entry_gcs: Incomplete
+create_entry_gcs_result: Incomplete
+create_entry_gcs_result2: Incomplete
+create_tag: Incomplete
+create_tag_result: Incomplete
+create_tag_result2: Incomplete
+create_tag_template: Incomplete
+create_tag_template_result: Incomplete
+create_tag_template_result2: Incomplete
+create_tag_template_field: Incomplete
+create_tag_template_field_result: Incomplete
+create_tag_template_field_result2: Incomplete
+delete_entry: Incomplete
+delete_entry_group: Incomplete
+delete_tag: Incomplete
+delete_tag_template_field: Incomplete
+delete_tag_template: Incomplete
+get_entry_group: Incomplete
+get_entry_group_result: Incomplete
+get_entry: Incomplete
+get_entry_result: Incomplete
+get_tag_template: Incomplete
+get_tag_template_result: Incomplete
+list_tags: Incomplete
+list_tags_result: Incomplete
+lookup_entry: Incomplete
+lookup_entry_result: Incomplete
+rename_tag_template_field: Incomplete
+search_catalog: Incomplete
+search_catalog_result: Incomplete
+update_entry: Incomplete
+update_tag: Incomplete
+update_tag_template: Incomplete
+update_tag_template_field: Incomplete
+create_tasks: Incomplete
+delete_tasks: Incomplete

@@ -1,18 +1,10 @@
-import airflow as airflow
-from _typeshed import Incomplete
 from airflow.api_connexion.schemas.version_schema import version_info_schema as version_info_schema
+from airflow.api_connexion.types import APIResponse as APIResponse
 from airflow.utils.platform import get_airflow_git_version as get_airflow_git_version
-from typing import ClassVar
+from typing import NamedTuple
 
-TYPE_CHECKING: bool
+class VersionInfo(NamedTuple):
+    version: str
+    git_version: str | None
 
-class VersionInfo(tuple):
-    _fields: ClassVar[tuple] = ...
-    _field_defaults: ClassVar[dict] = ...
-    _fields_defaults: ClassVar[dict] = ...
-    _field_types: ClassVar[dict] = ...
-    version: Incomplete
-    git_version: Incomplete
-    def __init__(self, _cls, version: str, git_version: str | None) -> None: ...
-    def __getnewargs__(self): ...
 def get_version() -> APIResponse: ...

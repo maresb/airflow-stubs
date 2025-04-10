@@ -1,14 +1,14 @@
-import airflow.models.trigger
-import collections
-import marshmallow_sqlalchemy.schema
-from airflow.models.trigger import Trigger as Trigger
-from typing import ClassVar
+from _typeshed import Incomplete
+from airflow.models import Trigger as Trigger
+from marshmallow_sqlalchemy import SQLAlchemySchema
 
-class TriggerSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
+class TriggerSchema(SQLAlchemySchema):
     class Meta:
-        model: ClassVar[type[airflow.models.trigger.Trigger]] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow_sqlalchemy.schema.SQLAlchemySchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+        model = Trigger
+    id: Incomplete
+    classpath: Incomplete
+    kwargs: Incomplete
+    created_date: Incomplete
+    triggerer_id: Incomplete
+    @staticmethod
+    def get_kwars(trigger: Trigger) -> str: ...

@@ -1,11 +1,8 @@
-import collections
-import marshmallow.schema
-from typing import ClassVar
+from _typeshed import Incomplete
+from marshmallow import Schema
 
-class VersionInfoSchema(marshmallow.schema.Schema):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow.schema.SchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
-version_info_schema: VersionInfoSchema
+class VersionInfoSchema(Schema):
+    version: Incomplete
+    git_version: Incomplete
+
+version_info_schema: Incomplete

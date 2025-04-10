@@ -1,8 +1,6 @@
-from typing import Operator as Operator
+from airflow.models.baseoperator import BaseOperator
+from airflow.models.mappedoperator import MappedOperator
 
-__all__ = ['Operator', 'needs_expansion']
+__all__ = ['Operator']
 
-def needs_expansion(task: AbstractOperator) -> TypeGuard[Operator]: ...
-
-# Names in __all__ with no definition:
-#   Operator
+Operator = BaseOperator | MappedOperator

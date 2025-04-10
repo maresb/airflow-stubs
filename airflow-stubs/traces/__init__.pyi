@@ -1,0 +1,3 @@
+TRACEPARENT: str
+TRACESTATE: str
+NO_TRACE_ID: int

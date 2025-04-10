@@ -1,7 +1,8 @@
-import typing
+from typing import Any, Callable, TypeVar
 
-CLIENT_AUTH: None
-def init_app(_): ...
+CLIENT_AUTH: tuple[str, str] | Any | None
 
-T: typing.TypeVar
+def init_app(_) -> None: ...
+T = TypeVar('T', bound=Callable)
+
 def requires_authentication(function: T): ...

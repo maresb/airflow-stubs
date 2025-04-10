@@ -1,4 +1,3 @@
-from airflow.decorators import task as task
-from airflow.models.dag import dag as dag
+from airflow.decorators import dag as dag, task as task
 
-def tutorial_taskflow_api(*args, **kwargs): ...
+def tutorial_taskflow_api(): ...

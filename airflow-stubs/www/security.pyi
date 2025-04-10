@@ -1,8 +1,7 @@
-import airflow.auth.managers.fab.security_manager.override
-from airflow.auth.managers.fab.security_manager.override import FabAirflowSecurityManagerOverride as FabAirflowSecurityManagerOverride
+from _typeshed import Incomplete
+from airflow.exceptions import RemovedInAirflow3Warning as RemovedInAirflow3Warning
+from airflow.providers.fab.auth_manager.security_manager.override import FabAirflowSecurityManagerOverride as FabAirflowSecurityManagerOverride
 
-EXISTING_ROLES: set
+EXISTING_ROLES: Incomplete
 
-class AirflowSecurityManager(airflow.auth.managers.fab.security_manager.override.FabAirflowSecurityManagerOverride):
-    @classmethod
-    def __init__(cls, *args, **kwargs) -> None: ...
+class AirflowSecurityManager(FabAirflowSecurityManagerOverride): ...

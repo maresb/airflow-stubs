@@ -1,8 +1,5 @@
-TYPE_CHECKING: bool
-ACTION_CAN_ACCESS_MENU: str
-ACTION_CAN_CREATE: str
-ACTION_CAN_DELETE: str
-ACTION_CAN_EDIT: str
-ACTION_CAN_READ: str
+from airflow.auth.managers.base_auth_manager import ResourceMethod as ResourceMethod
+from airflow.security.permissions import ACTION_CAN_ACCESS_MENU as ACTION_CAN_ACCESS_MENU, ACTION_CAN_CREATE as ACTION_CAN_CREATE, ACTION_CAN_DELETE as ACTION_CAN_DELETE, ACTION_CAN_EDIT as ACTION_CAN_EDIT, ACTION_CAN_READ as ACTION_CAN_READ
+
 def get_fab_action_from_method_map(): ...
 def get_method_from_fab_action_map(): ...

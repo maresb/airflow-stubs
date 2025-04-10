@@ -1,10 +1,11 @@
-import airflow.auth.managers.fab.security_manager.override
-from airflow.auth.managers.fab.security_manager.override import FabAirflowSecurityManagerOverride as FabAirflowSecurityManagerOverride
-
-TYPE_CHECKING: bool
+from _typeshed import Incomplete
+from airflow.providers.fab.auth_manager.security_manager.override import FabAirflowSecurityManagerOverride as FabAirflowSecurityManagerOverride
+from flask_session import Session as Session
 
 class FakeAppBuilder:
-    def __init__(self, session: Session | None = ...) -> None: ...
+    get_session: Incomplete
+    def __init__(self, session: Session | None = None) -> None: ...
 
-class ApplessAirflowSecurityManager(airflow.auth.managers.fab.security_manager.override.FabAirflowSecurityManagerOverride):
-    def __init__(self, session: Session | None = ...) -> None: ...
+class ApplessAirflowSecurityManager(FabAirflowSecurityManagerOverride):
+    appbuilder: Incomplete
+    def __init__(self, session: Session | None = None) -> None: ...

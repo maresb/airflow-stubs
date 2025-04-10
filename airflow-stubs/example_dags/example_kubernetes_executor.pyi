@@ -1,17 +1,46 @@
+from _typeshed import Incomplete
 from airflow.configuration import conf as conf
 from airflow.decorators import task as task
-from airflow.decorators.base import base_image_override_task as base_image_override_task, non_root_task as non_root_task, other_namespace_task as other_namespace_task, start_task as start_task, task_with_resource_limits as task_with_resource_limits, test_sharedvolume_mount as test_sharedvolume_mount, test_volume_mount as test_volume_mount
 from airflow.example_dags.libs.helper import print_stuff as print_stuff
-from airflow.models.dag import DAG as DAG, dag as dag
-from airflow.models.xcom_arg import base_image_task as base_image_task, four_task as four_task, other_ns_task as other_ns_task, sidecar_task as sidecar_task, third_task as third_task, volume_task as volume_task
+from airflow.models.dag import DAG as DAG
 
-start_task_executor_config: dict
-executor_config_volume_mount: dict
-executor_config_sidecar: dict
-executor_config_non_root: dict
-executor_config_other_ns: dict
-worker_container_repository: str
-worker_container_tag: str
-kube_exec_config_special: dict
-k8s_tolerations: list
-kube_exec_config_resource_limits: dict
+log: Incomplete
+start_task_executor_config: Incomplete
+
+def start_task() -> None: ...
+
+executor_config_volume_mount: Incomplete
+
+def test_volume_mount() -> None: ...
+
+volume_task: Incomplete
+executor_config_sidecar: Incomplete
+
+def test_sharedvolume_mount() -> None: ...
+
+sidecar_task: Incomplete
+executor_config_non_root: Incomplete
+
+def non_root_task() -> None: ...
+
+third_task: Incomplete
+executor_config_other_ns: Incomplete
+
+def other_namespace_task() -> None: ...
+
+other_ns_task: Incomplete
+worker_container_repository: Incomplete
+worker_container_tag: Incomplete
+kube_exec_config_special: Incomplete
+
+def base_image_override_task() -> None: ...
+
+base_image_task: Incomplete
+k8s_affinity: Incomplete
+k8s_tolerations: Incomplete
+k8s_resource_requirements: Incomplete
+kube_exec_config_resource_limits: Incomplete
+
+def task_with_resource_limits() -> None: ...
+
+four_task: Incomplete

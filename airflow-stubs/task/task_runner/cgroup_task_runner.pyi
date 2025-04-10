@@ -1,0 +1,19 @@
+from _typeshed import Incomplete
+from airflow.jobs.local_task_job_runner import LocalTaskJobRunner as LocalTaskJobRunner
+from airflow.task.task_runner.base_task_runner import BaseTaskRunner as BaseTaskRunner
+from airflow.utils import timezone as timezone
+from airflow.utils.operator_resources import Resources as Resources
+from airflow.utils.platform import getuser as getuser
+from airflow.utils.process_utils import reap_process_group as reap_process_group
+
+class CgroupTaskRunner(BaseTaskRunner):
+    process: Incomplete
+    mem_cgroup_name: Incomplete
+    cpu_cgroup_name: Incomplete
+    def __init__(self, job_runner: LocalTaskJobRunner) -> None: ...
+    mem_cgroup_node: Incomplete
+    def start(self) -> None: ...
+    def return_code(self, timeout: float = 0) -> int | None: ...
+    def terminate(self) -> None: ...
+    def on_finish(self) -> None: ...
+    def get_process_pid(self) -> int: ...

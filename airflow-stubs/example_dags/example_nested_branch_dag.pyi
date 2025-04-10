@@ -1,6 +1,17 @@
+from _typeshed import Incomplete
 from airflow.decorators import task as task
-from airflow.decorators.base import branch as branch
-from airflow.models.dag import DAG as DAG, dag as dag
-from airflow.models.xcom_arg import branch_1 as branch_1, branch_2 as branch_2
-from airflow.operators.empty import EmptyOperator as EmptyOperator, false_1 as false_1, false_2 as false_2, false_3 as false_3, join_1 as join_1, join_2 as join_2, true_1 as true_1, true_2 as true_2
+from airflow.models.dag import DAG as DAG
+from airflow.operators.empty import EmptyOperator as EmptyOperator
 from airflow.utils.trigger_rule import TriggerRule as TriggerRule
+
+def branch(task_id_to_return: str) -> str: ...
+
+branch_1: Incomplete
+join_1: Incomplete
+true_1: Incomplete
+false_1: Incomplete
+branch_2: Incomplete
+join_2: Incomplete
+true_2: Incomplete
+false_2: Incomplete
+false_3: Incomplete

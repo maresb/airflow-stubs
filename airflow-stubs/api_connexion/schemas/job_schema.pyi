@@ -1,14 +1,17 @@
-import airflow.jobs.job
-import collections
-import marshmallow_sqlalchemy.schema
+from _typeshed import Incomplete
 from airflow.jobs.job import Job as Job
-from typing import ClassVar
+from marshmallow_sqlalchemy import SQLAlchemySchema
 
-class JobSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
+class JobSchema(SQLAlchemySchema):
     class Meta:
-        model: ClassVar[type[airflow.jobs.job.Job]] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow_sqlalchemy.schema.SQLAlchemySchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+        model = Job
+    id: Incomplete
+    dag_id: Incomplete
+    state: Incomplete
+    job_type: Incomplete
+    start_date: Incomplete
+    end_date: Incomplete
+    latest_heartbeat: Incomplete
+    executor_class: Incomplete
+    hostname: Incomplete
+    unixname: Incomplete

@@ -1,16 +1,19 @@
-import airflow.models.baseoperator
+from _typeshed import Incomplete
 from airflow.hooks.base import BaseHook as BaseHook
-from airflow.models.baseoperator import BaseOperator as BaseOperator
-from typing import ClassVar
+from airflow.models import BaseOperator as BaseOperator
+from airflow.utils.context import Context as Context
+from typing import Sequence
 
-TYPE_CHECKING: bool
-
-class GenericTransfer(airflow.models.baseoperator.BaseOperator):
-    template_fields: ClassVar[tuple] = ...
-    template_ext: ClassVar[tuple] = ...
-    template_fields_renderers: ClassVar[dict] = ...
-    ui_color: ClassVar[str] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    def __init__(self, *args, **kwargs) -> None: ...
+class GenericTransfer(BaseOperator):
+    template_fields: Sequence[str]
+    template_ext: Sequence[str]
+    template_fields_renderers: Incomplete
+    ui_color: str
+    sql: Incomplete
+    destination_table: Incomplete
+    source_conn_id: Incomplete
+    destination_conn_id: Incomplete
+    preoperator: Incomplete
+    insert_args: Incomplete
+    def __init__(self, *, sql: str, destination_table: str, source_conn_id: str, destination_conn_id: str, preoperator: str | list[str] | None = None, insert_args: dict | None = None, **kwargs) -> None: ...
     def execute(self, context: Context): ...

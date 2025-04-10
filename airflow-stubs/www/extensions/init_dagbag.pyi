@@ -1,4 +1,4 @@
-from airflow.models.dagbag import DagBag as DagBag
+from airflow.models import DagBag as DagBag
+from airflow.settings import DAGS_FOLDER as DAGS_FOLDER
 
-DAGS_FOLDER: str
-def init_dagbag(app): ...
+def init_dagbag(app) -> None: ...

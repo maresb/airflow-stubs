@@ -1,9 +1,11 @@
+from _typeshed import Incomplete
 from airflow.utils.sqlalchemy import ExtendedJSON as ExtendedJSON
 
 revision: str
 down_revision: str
-branch_labels: None
-depends_on: None
+branch_labels: Incomplete
+depends_on: Incomplete
 airflow_version: str
-def upgrade(): ...
-def downgrade(): ...
+
+def upgrade() -> None: ...
+def downgrade() -> None: ...

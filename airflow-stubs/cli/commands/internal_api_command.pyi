@@ -1,6 +1,5 @@
-import airflow.settings as settings
-import airflow.utils.cli as cli_utils
 from _typeshed import Incomplete
+from airflow import settings as settings
 from airflow.api_internal.internal_api_call import InternalApiConfig as InternalApiConfig
 from airflow.cli.commands.daemon_utils import run_command_with_daemon_option as run_command_with_daemon_option
 from airflow.cli.commands.webserver_command import GunicornMonitor as GunicornMonitor
@@ -15,8 +14,11 @@ from airflow.www.extensions.init_jinja_globals import init_jinja_globals as init
 from airflow.www.extensions.init_manifest_files import configure_manifest_files as configure_manifest_files
 from airflow.www.extensions.init_security import init_xframe_protection as init_xframe_protection
 from airflow.www.extensions.init_views import init_api_internal as init_api_internal, init_error_handlers as init_error_handlers
+from flask import Flask
 
-app: None
-def internal_api(*args, **kwargs): ...
-def create_app(config: Incomplete | None = ..., testing: bool = ...): ...
-def cached_app(config: Incomplete | None = ..., testing: bool = ...): ...
+log: Incomplete
+app: Flask | None
+
+def internal_api(args): ...
+def create_app(config: Incomplete | None = None, testing: bool = False): ...
+def cached_app(config: Incomplete | None = None, testing: bool = False): ...

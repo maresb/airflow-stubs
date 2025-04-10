@@ -1,14 +1,14 @@
-import airflow.models.slamiss
-import collections
-import marshmallow_sqlalchemy.schema
-from airflow.models.slamiss import SlaMiss as SlaMiss
-from typing import ClassVar
+from _typeshed import Incomplete
+from airflow.models import SlaMiss as SlaMiss
+from marshmallow_sqlalchemy import SQLAlchemySchema
 
-class SlaMissSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
+class SlaMissSchema(SQLAlchemySchema):
     class Meta:
-        model: ClassVar[type[airflow.models.slamiss.SlaMiss]] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow_sqlalchemy.schema.SQLAlchemySchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+        model = SlaMiss
+    task_id: Incomplete
+    dag_id: Incomplete
+    execution_date: Incomplete
+    email_sent: Incomplete
+    timestamp: Incomplete
+    description: Incomplete
+    notification_sent: Incomplete

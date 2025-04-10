@@ -1,30 +1,29 @@
-import collections
-import marshmallow.schema
 from _typeshed import Incomplete
-from typing import ClassVar
+from marshmallow import Schema
+from typing import NamedTuple
 
-class PluginSchema(marshmallow.schema.Schema):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow.schema.SchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+class PluginSchema(Schema):
+    name: Incomplete
+    hooks: Incomplete
+    executors: Incomplete
+    macros: Incomplete
+    flask_blueprints: Incomplete
+    appbuilder_views: Incomplete
+    appbuilder_menu_items: Incomplete
+    global_operator_extra_links: Incomplete
+    operator_extra_links: Incomplete
+    source: Incomplete
+    ti_deps: Incomplete
+    listeners: Incomplete
+    timetables: Incomplete
 
-class PluginCollection(tuple):
-    _fields: ClassVar[tuple] = ...
-    _field_defaults: ClassVar[dict] = ...
-    _fields_defaults: ClassVar[dict] = ...
-    _field_types: ClassVar[dict] = ...
+class PluginCollection(NamedTuple):
+    plugins: list
+    total_entries: int
+
+class PluginCollectionSchema(Schema):
     plugins: Incomplete
     total_entries: Incomplete
-    def __init__(self, _cls, plugins: list, total_entries: int) -> None: ...
-    def __getnewargs__(self): ...
 
-class PluginCollectionSchema(marshmallow.schema.Schema):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow.schema.SchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
-plugin_schema: PluginSchema
-plugin_collection_schema: PluginCollectionSchema
+plugin_schema: Incomplete
+plugin_collection_schema: Incomplete

@@ -1,16 +1,18 @@
-import airflow.operators.branch
-import airflow.utils.timezone as timezone
 import datetime
+from _typeshed import Incomplete
 from airflow.exceptions import AirflowException as AirflowException, RemovedInAirflow3Warning as RemovedInAirflow3Warning
 from airflow.operators.branch import BaseBranchOperator as BaseBranchOperator
-from airflow.utils.decorators import warnings as warnings
-from typing import ClassVar, Iterable
+from airflow.utils import timezone as timezone
+from airflow.utils.context import Context as Context
+from typing import Iterable
 
-TYPE_CHECKING: bool
-
-class BranchDateTimeOperator(airflow.operators.branch.BaseBranchOperator):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    def __init__(self, *args, **kwargs) -> None: ...
+class BranchDateTimeOperator(BaseBranchOperator):
+    target_lower: Incomplete
+    target_upper: Incomplete
+    follow_task_ids_if_true: Incomplete
+    follow_task_ids_if_false: Incomplete
+    use_task_logical_date: Incomplete
+    def __init__(self, *, follow_task_ids_if_true: str | Iterable[str], follow_task_ids_if_false: str | Iterable[str], target_lower: datetime.datetime | datetime.time | None, target_upper: datetime.datetime | datetime.time | None, use_task_logical_date: bool = False, use_task_execution_date: bool = False, **kwargs) -> None: ...
     def choose_branch(self, context: Context) -> str | Iterable[str]: ...
+
 def target_times_as_dates(base_date: datetime.datetime, lower: datetime.datetime | datetime.time | None, upper: datetime.datetime | datetime.time | None): ...

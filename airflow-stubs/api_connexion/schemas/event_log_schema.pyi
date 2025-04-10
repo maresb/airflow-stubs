@@ -1,35 +1,31 @@
-import airflow.models.log
-import collections
-import marshmallow.schema
-import marshmallow_sqlalchemy.schema
 from _typeshed import Incomplete
 from airflow.models.log import Log as Log
-from typing import ClassVar
+from marshmallow import Schema
+from marshmallow_sqlalchemy import SQLAlchemySchema
+from typing import NamedTuple
 
-class EventLogSchema(marshmallow_sqlalchemy.schema.SQLAlchemySchema):
+class EventLogSchema(SQLAlchemySchema):
     class Meta:
-        model: ClassVar[type[airflow.models.log.Log]] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow_sqlalchemy.schema.SQLAlchemySchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+        model = Log
+    id: Incomplete
+    dttm: Incomplete
+    dag_id: Incomplete
+    task_id: Incomplete
+    run_id: Incomplete
+    map_index: Incomplete
+    try_number: Incomplete
+    event: Incomplete
+    execution_date: Incomplete
+    owner: Incomplete
+    extra: Incomplete
 
-class EventLogCollection(tuple):
-    _fields: ClassVar[tuple] = ...
-    _field_defaults: ClassVar[dict] = ...
-    _fields_defaults: ClassVar[dict] = ...
-    _field_types: ClassVar[dict] = ...
+class EventLogCollection(NamedTuple):
+    event_logs: list[Log]
+    total_entries: int
+
+class EventLogCollectionSchema(Schema):
     event_logs: Incomplete
     total_entries: Incomplete
-    def __init__(self, _cls, event_logs: list[Log], total_entries: int) -> None: ...
-    def __getnewargs__(self): ...
 
-class EventLogCollectionSchema(marshmallow.schema.Schema):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow.schema.SchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
-event_log_schema: EventLogSchema
-event_log_collection_schema: EventLogCollectionSchema
+event_log_schema: Incomplete
+event_log_collection_schema: Incomplete

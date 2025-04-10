@@ -1,17 +1,12 @@
-import airflow.models.baseoperator
 from airflow.exceptions import AirflowSkipException as AirflowSkipException
 from airflow.models.baseoperator import BaseOperator as BaseOperator
-from airflow.models.dag import DAG as DAG, dag as dag
+from airflow.models.dag import DAG as DAG
 from airflow.operators.empty import EmptyOperator as EmptyOperator
+from airflow.utils.context import Context as Context
 from airflow.utils.trigger_rule import TriggerRule as TriggerRule
-from typing import ClassVar
 
-TYPE_CHECKING: bool
-
-class EmptySkipOperator(airflow.models.baseoperator.BaseOperator):
-    ui_color: ClassVar[str] = ...
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
+class EmptySkipOperator(BaseOperator):
+    ui_color: str
     def execute(self, context: Context): ...
-    def __init__(self, *args, **kwargs) -> None: ...
-def create_test_pipeline(suffix, trigger_rule): ...
+
+def create_test_pipeline(suffix, trigger_rule) -> None: ...

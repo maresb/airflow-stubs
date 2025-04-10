@@ -1,35 +1,48 @@
-import collections
-import marshmallow.schema
 from _typeshed import Incomplete
 from airflow.api_connexion.schemas.common_schema import ClassReferenceSchema as ClassReferenceSchema, ColorField as ColorField, TimeDeltaSchema as TimeDeltaSchema, WeightRuleField as WeightRuleField
 from airflow.api_connexion.schemas.dag_schema import DAGSchema as DAGSchema
 from airflow.models.mappedoperator import MappedOperator as MappedOperator
-from typing import ClassVar
+from airflow.models.operator import Operator as Operator
+from marshmallow import Schema
+from typing import NamedTuple
 
-TYPE_CHECKING: bool
+class TaskSchema(Schema):
+    class_ref: Incomplete
+    operator_name: Incomplete
+    task_id: Incomplete
+    task_display_name: Incomplete
+    owner: Incomplete
+    start_date: Incomplete
+    end_date: Incomplete
+    trigger_rule: Incomplete
+    extra_links: Incomplete
+    depends_on_past: Incomplete
+    wait_for_downstream: Incomplete
+    retries: Incomplete
+    queue: Incomplete
+    pool: Incomplete
+    pool_slots: Incomplete
+    execution_timeout: Incomplete
+    retry_delay: Incomplete
+    retry_exponential_backoff: Incomplete
+    priority_weight: Incomplete
+    weight_rule: Incomplete
+    ui_color: Incomplete
+    ui_fgcolor: Incomplete
+    template_fields: Incomplete
+    sub_dag: Incomplete
+    downstream_task_ids: Incomplete
+    params: Incomplete
+    is_mapped: Incomplete
+    doc_md: Incomplete
 
-class TaskSchema(marshmallow.schema.Schema):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow.schema.SchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
+class TaskCollection(NamedTuple):
+    tasks: list[Operator]
+    total_entries: int
 
-class TaskCollection(tuple):
-    _fields: ClassVar[tuple] = ...
-    _field_defaults: ClassVar[dict] = ...
-    _fields_defaults: ClassVar[dict] = ...
-    _field_types: ClassVar[dict] = ...
+class TaskCollectionSchema(Schema):
     tasks: Incomplete
     total_entries: Incomplete
-    def __init__(self, _cls, tasks: list[Operator], total_entries: int) -> None: ...
-    def __getnewargs__(self): ...
 
-class TaskCollectionSchema(marshmallow.schema.Schema):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    opts: ClassVar[marshmallow.schema.SchemaOpts] = ...
-    _declared_fields: ClassVar[dict] = ...
-    _hooks: ClassVar[collections.defaultdict] = ...
-task_schema: TaskSchema
-task_collection_schema: TaskCollectionSchema
+task_schema: Incomplete
+task_collection_schema: Incomplete

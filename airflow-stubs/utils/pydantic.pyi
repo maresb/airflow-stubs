@@ -1,3 +1,5 @@
+from pydantic import BaseModel as BaseModel, ConfigDict as ConfigDict, PlainSerializer as PlainSerializer, PlainValidator as PlainValidator, ValidationInfo as ValidationInfo
+
 def is_pydantic_2_installed() -> bool: ...
 
 class BaseModel:

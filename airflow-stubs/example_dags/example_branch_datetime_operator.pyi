@@ -1,3 +1,17 @@
-from airflow.models.dag import DAG as DAG, dag1 as dag1, dag2 as dag2, dag3 as dag3
-from airflow.operators.datetime import BranchDateTimeOperator as BranchDateTimeOperator, cond1 as cond1, cond2 as cond2, cond3 as cond3
-from airflow.operators.empty import EmptyOperator as EmptyOperator, empty_task_11 as empty_task_11, empty_task_12 as empty_task_12, empty_task_13 as empty_task_13, empty_task_21 as empty_task_21, empty_task_22 as empty_task_22, empty_task_23 as empty_task_23
+from _typeshed import Incomplete
+from airflow.models.dag import DAG as DAG
+from airflow.operators.datetime import BranchDateTimeOperator as BranchDateTimeOperator
+from airflow.operators.empty import EmptyOperator as EmptyOperator
+
+dag1: Incomplete
+empty_task_11: Incomplete
+empty_task_21: Incomplete
+cond1: Incomplete
+dag2: Incomplete
+empty_task_12: Incomplete
+empty_task_22: Incomplete
+cond2: Incomplete
+dag3: Incomplete
+empty_task_13: Incomplete
+empty_task_23: Incomplete
+cond3: Incomplete

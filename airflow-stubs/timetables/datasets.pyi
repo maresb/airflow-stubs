@@ -1,0 +1,26 @@
+import pendulum
+import typing
+from _typeshed import Incomplete
+from airflow.datasets import BaseDataset as BaseDataset, Dataset as Dataset, DatasetAll as DatasetAll
+from airflow.exceptions import AirflowTimetableInvalid as AirflowTimetableInvalid
+from airflow.timetables.base import DagRunInfo as DagRunInfo, DataInterval as DataInterval, TimeRestriction as TimeRestriction, Timetable as Timetable
+from airflow.timetables.simple import DatasetTriggeredTimetable as DatasetTriggeredSchedule
+from airflow.utils.types import DagRunType as DagRunType
+from collections.abc import Collection
+
+class DatasetOrTimeSchedule(DatasetTriggeredSchedule):
+    timetable: Incomplete
+    dataset_condition: Incomplete
+    description: Incomplete
+    periodic: Incomplete
+    active_runs_limit: Incomplete
+    def __init__(self, *, timetable: Timetable, datasets: Collection[Dataset] | BaseDataset) -> None: ...
+    @classmethod
+    def deserialize(cls, data: dict[str, typing.Any]) -> Timetable: ...
+    def serialize(self) -> dict[str, typing.Any]: ...
+    def validate(self) -> None: ...
+    @property
+    def summary(self) -> str: ...
+    def infer_manual_data_interval(self, *, run_after: pendulum.DateTime) -> DataInterval: ...
+    def next_dagrun_info(self, *, last_automated_data_interval: DataInterval | None, restriction: TimeRestriction) -> DagRunInfo | None: ...
+    def generate_run_id(self, *, run_type: DagRunType, **kwargs: typing.Any) -> str: ...

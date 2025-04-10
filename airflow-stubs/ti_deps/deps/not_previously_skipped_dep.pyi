@@ -1,10 +1,8 @@
-import airflow.ti_deps.deps.base_ti_dep
+from airflow.models.taskinstance import PAST_DEPENDS_MET as PAST_DEPENDS_MET
 from airflow.ti_deps.deps.base_ti_dep import BaseTIDep as BaseTIDep
-from typing import ClassVar
+from airflow.utils.db import LazySelectSequence as LazySelectSequence
 
-PAST_DEPENDS_MET: str
-
-class NotPreviouslySkippedDep(airflow.ti_deps.deps.base_ti_dep.BaseTIDep):
-    NAME: ClassVar[str] = ...
-    IGNORABLE: ClassVar[bool] = ...
-    IS_TASK_DEP: ClassVar[bool] = ...
+class NotPreviouslySkippedDep(BaseTIDep):
+    NAME: str
+    IGNORABLE: bool
+    IS_TASK_DEP: bool

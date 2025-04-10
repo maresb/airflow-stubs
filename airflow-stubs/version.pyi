@@ -1,3 +1,3 @@
-__all__ = ['version']
+from airflow import __version__ as version
 
-version: str
+__all__ = ['version']

@@ -31,16 +31,18 @@
 Definition of the public interface for airflow.providers.common.sql.operators.sql
 isort:skip_file
 """
-from _typeshed import Incomplete  # noqa: F401
-from airflow.models import BaseOperator, SkipMixin
-from airflow.providers.common.sql.hooks.sql import DbApiHook
-from airflow.utils.context import Context
-from typing import Any, Callable, Iterable, Mapping, Sequence, SupportsAbs, Union
+from _typeshed import Incomplete as Incomplete
+from airflow.models import BaseOperator as BaseOperator, SkipMixin as SkipMixin
+from airflow.providers.common.sql.hooks.sql import DbApiHook as DbApiHook
+from airflow.providers.openlineage.extractors import OperatorLineage as OperatorLineage
+from airflow.utils.context import Context as Context
+from typing import Any, Callable, ClassVar, Iterable, Mapping, Sequence, SupportsAbs
 
-def _parse_boolean(val: str) -> str | bool: ...
 def parse_boolean(val: str) -> str | bool: ...
 
 class BaseSQLOperator(BaseOperator):
+    conn_id_field: str
+    template_fields: Sequence[str]
     conn_id: Incomplete
     database: Incomplete
     hook_params: Incomplete
@@ -48,10 +50,10 @@ class BaseSQLOperator(BaseOperator):
     def __init__(
         self,
         *,
-        conn_id: Union[str, None] = ...,
-        database: Union[str, None] = ...,
-        hook_params: Union[dict, None] = ...,
-        retry_on_failure: bool = ...,
+        conn_id: str | None = None,
+        database: str | None = None,
+        hook_params: dict | None = None,
+        retry_on_failure: bool = True,
         **kwargs,
     ) -> None: ...
     def get_db_hook(self) -> DbApiHook: ...
@@ -60,7 +62,7 @@ class SQLExecuteQueryOperator(BaseSQLOperator):
     def _raise_exception(self, exception_string: str) -> Incomplete: ...
     template_fields: Sequence[str]
     template_ext: Sequence[str]
-    template_fields_renderers: Incomplete
+    template_fields_renderers: ClassVar[dict]
     ui_color: str
     sql: Incomplete
     autocommit: Incomplete
@@ -72,21 +74,32 @@ class SQLExecuteQueryOperator(BaseSQLOperator):
     def __init__(
         self,
         *,
-        sql: Union[str, list[str]],
-        autocommit: bool = ...,
-        parameters: Union[Mapping, Iterable, None] = ...,
-        handler: Callable[[Any], Any] = ...,
-        split_statements: Union[bool, None] = ...,
-        return_last: bool = ...,
-        show_return_value_in_logs: bool = ...,
+        sql: str | list[str],
+        autocommit: bool = False,
+        parameters: Mapping | Iterable | None = None,
+        handler: Callable[[Any], list[tuple] | None] = ...,
+        output_processor: (
+            Callable[
+                [list[Any], list[Sequence[Sequence] | None]],
+                list[Any] | tuple[list[Sequence[Sequence] | None], list],
+            ]
+            | None
+        ) = None,
+        conn_id: str | None = None,
+        database: str | None = None,
+        split_statements: bool | None = None,
+        return_last: bool = True,
+        show_return_value_in_logs: bool = False,
         **kwargs,
     ) -> None: ...
-    def execute(self, context): ...
+    def execute(self, context) -> None: ...
     def prepare_template(self) -> None: ...
+    def get_openlineage_facets_on_start(self) -> OperatorLineage | None: ...
+    def get_openlineage_facets_on_complete(self, task_instance) -> OperatorLineage | None: ...
 
 class SQLColumnCheckOperator(BaseSQLOperator):
-    template_fields: Incomplete
-    template_fields_renderers: Incomplete
+    template_fields: Sequence[str]
+    template_fields_renderers: ClassVar[dict]
     sql_check_template: str
     column_checks: Incomplete
     table: Incomplete
@@ -99,17 +112,17 @@ class SQLColumnCheckOperator(BaseSQLOperator):
         *,
         table: str,
         column_mapping: dict[str, dict[str, Any]],
-        partition_clause: Union[str, None] = ...,
-        conn_id: Union[str, None] = ...,
-        database: Union[str, None] = ...,
-        accept_none: bool = ...,
+        partition_clause: str | None = None,
+        conn_id: str | None = None,
+        database: str | None = None,
+        accept_none: bool = True,
         **kwargs,
     ) -> None: ...
     def execute(self, context: Context): ...
 
 class SQLTableCheckOperator(BaseSQLOperator):
-    template_fields: Incomplete
-    template_fields_renderers: Incomplete
+    template_fields: Sequence[str]
+    template_fields_renderers: ClassVar[dict]
     sql_check_template: str
     table: Incomplete
     checks: Incomplete
@@ -120,9 +133,9 @@ class SQLTableCheckOperator(BaseSQLOperator):
         *,
         table: str,
         checks: dict[str, dict[str, Any]],
-        partition_clause: Union[str, None] = ...,
-        conn_id: Union[str, None] = ...,
-        database: Union[str, None] = ...,
+        partition_clause: str | None = None,
+        conn_id: str | None = None,
+        database: str | None = None,
         **kwargs,
     ) -> None: ...
     def execute(self, context: Context): ...
@@ -130,7 +143,7 @@ class SQLTableCheckOperator(BaseSQLOperator):
 class SQLCheckOperator(BaseSQLOperator):
     template_fields: Sequence[str]
     template_ext: Sequence[str]
-    template_fields_renderers: Incomplete
+    template_fields_renderers: ClassVar[dict]
     ui_color: str
     sql: Incomplete
     parameters: Incomplete
@@ -138,9 +151,9 @@ class SQLCheckOperator(BaseSQLOperator):
         self,
         *,
         sql: str,
-        conn_id: Union[str, None] = ...,
-        database: Union[str, None] = ...,
-        parameters: Union[Iterable, Mapping, None] = ...,
+        conn_id: str | None = None,
+        database: str | None = None,
+        parameters: Iterable | Mapping[str, Any] | None = None,
         **kwargs,
     ) -> None: ...
     def execute(self, context: Context): ...
@@ -149,7 +162,7 @@ class SQLValueCheckOperator(BaseSQLOperator):
     __mapper_args__: Incomplete
     template_fields: Sequence[str]
     template_ext: Sequence[str]
-    template_fields_renderers: Incomplete
+    template_fields_renderers: ClassVar[dict]
     ui_color: str
     sql: Incomplete
     pass_value: Incomplete
@@ -160,18 +173,19 @@ class SQLValueCheckOperator(BaseSQLOperator):
         *,
         sql: str,
         pass_value: Any,
-        tolerance: Any = ...,
-        conn_id: Union[str, None] = ...,
-        database: Union[str, None] = ...,
+        tolerance: Any = None,
+        conn_id: str | None = None,
+        database: str | None = None,
         **kwargs,
     ) -> None: ...
+    def check_value(self, records) -> None: ...
     def execute(self, context: Context): ...
 
 class SQLIntervalCheckOperator(BaseSQLOperator):
     __mapper_args__: Incomplete
     template_fields: Sequence[str]
     template_ext: Sequence[str]
-    template_fields_renderers: Incomplete
+    template_fields_renderers: ClassVar[dict]
     ui_color: str
     ratio_formulas: Incomplete
     ratio_formula: Incomplete
@@ -188,12 +202,12 @@ class SQLIntervalCheckOperator(BaseSQLOperator):
         *,
         table: str,
         metrics_thresholds: dict[str, int],
-        date_filter_column: Union[str, None] = ...,
-        days_back: SupportsAbs[int] = ...,
-        ratio_formula: Union[str, None] = ...,
-        ignore_zero: bool = ...,
-        conn_id: Union[str, None] = ...,
-        database: Union[str, None] = ...,
+        date_filter_column: str | None = "ds",
+        days_back: SupportsAbs[int] = -7,
+        ratio_formula: str | None = "max_over_min",
+        ignore_zero: bool = True,
+        conn_id: str | None = None,
+        database: str | None = None,
         **kwargs,
     ) -> None: ...
     def execute(self, context: Context): ...
@@ -201,7 +215,7 @@ class SQLIntervalCheckOperator(BaseSQLOperator):
 class SQLThresholdCheckOperator(BaseSQLOperator):
     template_fields: Sequence[str]
     template_ext: Sequence[str]
-    template_fields_renderers: Incomplete
+    template_fields_renderers: ClassVar[dict]
     sql: Incomplete
     min_threshold: Incomplete
     max_threshold: Incomplete
@@ -211,8 +225,8 @@ class SQLThresholdCheckOperator(BaseSQLOperator):
         sql: str,
         min_threshold: Any,
         max_threshold: Any,
-        conn_id: Union[str, None] = ...,
-        database: Union[str, None] = ...,
+        conn_id: str | None = None,
+        database: str | None = None,
         **kwargs,
     ) -> None: ...
     def execute(self, context: Context): ...
@@ -221,7 +235,7 @@ class SQLThresholdCheckOperator(BaseSQLOperator):
 class BranchSQLOperator(BaseSQLOperator, SkipMixin):
     template_fields: Sequence[str]
     template_ext: Sequence[str]
-    template_fields_renderers: Incomplete
+    template_fields_renderers: ClassVar[dict]
     ui_color: str
     ui_fgcolor: str
     sql: Incomplete
@@ -234,9 +248,9 @@ class BranchSQLOperator(BaseSQLOperator, SkipMixin):
         sql: str,
         follow_task_ids_if_true: list[str],
         follow_task_ids_if_false: list[str],
-        conn_id: str = ...,
-        database: Union[str, None] = ...,
-        parameters: Union[Iterable, Mapping, None] = ...,
+        conn_id: str = "default_conn_id",
+        database: str | None = None,
+        parameters: Iterable | Mapping[str, Any] | None = None,
         **kwargs,
     ) -> None: ...
     def execute(self, context: Context): ...

@@ -1,0 +1,3 @@
+from airflow import settings as settings
+
+def post_worker_init(_) -> None: ...

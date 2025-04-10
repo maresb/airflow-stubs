@@ -14,7 +14,7 @@ AIRFLOW_INST="$(dirname $(python -c 'import airflow; print(airflow.__file__)'))"
 pip install mypy apache-airflow==$AIRFLOW_VERSION apache-airflow-providers-docker
 
 cd /home/airflow
-stubgen --inspect-mode --ignore-errors -p airflow -p airflow.providers.docker
+stubgen --ignore-errors -p airflow -p airflow.providers.docker
 
 cd "$AIRFLOW_INST"
 

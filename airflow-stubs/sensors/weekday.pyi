@@ -1,15 +1,13 @@
-import airflow.sensors.base
-import airflow.utils.timezone as timezone
+from _typeshed import Incomplete
 from airflow.exceptions import RemovedInAirflow3Warning as RemovedInAirflow3Warning
 from airflow.sensors.base import BaseSensorOperator as BaseSensorOperator
-from airflow.utils.decorators import warnings as warnings
+from airflow.utils import timezone as timezone
+from airflow.utils.context import Context as Context
 from airflow.utils.weekday import WeekDay as WeekDay
-from typing import ClassVar
+from typing import Iterable
 
-TYPE_CHECKING: bool
-
-class DayOfWeekSensor(airflow.sensors.base.BaseSensorOperator):
-    __abstractmethods__: ClassVar[frozenset] = ...
-    _abc_impl: ClassVar[_abc_data] = ...
-    def __init__(self, *args, **kwargs) -> None: ...
+class DayOfWeekSensor(BaseSensorOperator):
+    week_day: Incomplete
+    use_task_logical_date: Incomplete
+    def __init__(self, *, week_day: str | Iterable[str] | WeekDay | Iterable[WeekDay], use_task_logical_date: bool = False, use_task_execution_day: bool = False, **kwargs) -> None: ...
     def poke(self, context: Context) -> bool: ...

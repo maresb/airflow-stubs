@@ -1,3 +1,6 @@
+from _typeshed import Incomplete
+from typing import TypedDict
+
 RESOURCE_ACTION: str
 RESOURCE_ADMIN_MENU: str
 RESOURCE_AUDIT_LOG: str
@@ -9,6 +12,7 @@ RESOURCE_DAG_CODE: str
 RESOURCE_DAG_DEPENDENCIES: str
 RESOURCE_DAG_PREFIX: str
 RESOURCE_DAG_RUN: str
+RESOURCE_DAG_RUN_PREFIX: str
 RESOURCE_DAG_WARNING: str
 RESOURCE_CLUSTER_ACTIVITY: str
 RESOURCE_DATASET: str
@@ -42,5 +46,15 @@ ACTION_CAN_DELETE: str
 ACTION_CAN_ACCESS_MENU: str
 DEPRECATED_ACTION_CAN_DAG_READ: str
 DEPRECATED_ACTION_CAN_DAG_EDIT: str
-DAG_ACTIONS: set
+
+class ResourceDetails(TypedDict):
+    actions: set[str]
+    prefix: str
+
+DAG_ACTIONS: Incomplete
+RESOURCE_DETAILS_MAP: Incomplete
+PREFIX_LIST: Incomplete
+PREFIX_RESOURCES_MAP: Incomplete
+
+def resource_name(root_dag_id: str, resource: str) -> str: ...
 def resource_name_for_dag(root_dag_id: str) -> str: ...

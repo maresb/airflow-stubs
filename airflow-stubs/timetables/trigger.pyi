@@ -1,0 +1,16 @@
+import datetime
+from airflow.timetables._cron import CronMixin as CronMixin
+from airflow.timetables.base import DagRunInfo as DagRunInfo, DataInterval as DataInterval, TimeRestriction as TimeRestriction, Timetable as Timetable
+from airflow.utils import timezone as timezone
+from dateutil.relativedelta import relativedelta as relativedelta
+from pendulum import DateTime as DateTime
+from pendulum.tz.timezone import FixedTimezone as FixedTimezone, Timezone as Timezone
+from typing import Any
+
+class CronTriggerTimetable(CronMixin, Timetable):
+    def __init__(self, cron: str, *, timezone: str | Timezone | FixedTimezone, interval: datetime.timedelta | relativedelta = ...) -> None: ...
+    @classmethod
+    def deserialize(cls, data: dict[str, Any]) -> Timetable: ...
+    def serialize(self) -> dict[str, Any]: ...
+    def infer_manual_data_interval(self, *, run_after: DateTime) -> DataInterval: ...
+    def next_dagrun_info(self, *, last_automated_data_interval: DataInterval | None, restriction: TimeRestriction) -> DagRunInfo | None: ...
