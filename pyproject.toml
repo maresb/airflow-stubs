@@ -39,3 +39,8 @@ packages = ["airflow-stubs"]
 source = "vcs"
 # Ensure that the version number is of the form vX.Y.Z
 tag-pattern = '''^v(\d+\.\d+\.\d+)$'''
+
+[tool.check-wheel-contents]
+ignore = [
+  "W002", # Wheel contains duplicate files
+]
